@@ -16,6 +16,8 @@
     <link href="{{ asset('css/sweet-alert.css') }}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ asset('css/components.css') }}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ asset('css/dataTables.bootstrap.min.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ asset('css/responsive.bootstrap.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 
 </head>
 <body>

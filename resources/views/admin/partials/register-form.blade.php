@@ -43,10 +43,10 @@
       </div>
   </div>
   <div class="col-md-6">
-      <div class="form-group {{ $errors->has('address') ? 'has-error' : ''}}">
-          {!! Form::label('address', 'Address', ['class' => 'control-label']) !!}
-          {!! Form::text('address', null, ['class' => 'form-control']) !!}
-          {!! $errors->first('address', '<p class="help-block">:message</p>') !!}
+      <div class="form-group {{ $errors->has('child_age') ? 'has-error' : ''}}">
+          {!! Form::label('child_age', 'Age', ['class' => 'control-label']) !!}
+          {!! Form::text('child_age', null, ['class' => 'form-control']) !!}
+          {!! $errors->first('child_age', '<p class="help-block">:message</p>') !!}
       </div>
   </div>
 </div>
@@ -64,6 +64,16 @@
           {!! Form::label('sex', 'Sex', ['class' => 'control-label']) !!}
           {!! Form::select('sex', ['male' => 'male', 'female' => 'female'], null, ['class' => 'form-control']) !!}
           {!! $errors->first('sex', '<p class="help-block">:message</p>') !!}
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+      <div class="form-group {{ $errors->has('address') ? 'has-error' : ''}}">
+          {!! Form::label('address', 'Address', ['class' => 'control-label']) !!}
+          {!! Form::text('address', null, ['class' => 'form-control']) !!}
+          {!! $errors->first('address', '<p class="help-block">:message</p>') !!}
       </div>
   </div>
 </div>

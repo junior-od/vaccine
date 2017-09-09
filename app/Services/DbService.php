@@ -16,5 +16,24 @@ class DbService {
     }
 
 
-    
+    public function register($request = [])
+    {
+        $request = array_merge($request, ['reported_by' => Auth::id()]);
+
+        VaccinatedChild::create($request);
+
+        return true;
+    }
+
+    public function getVaccinated()
+    {
+        if (get_user_role() == 'Admin') {
+            $vaccinated = VaccinatedChild::where('reported_by', Auth::id())
+                          ->get();
+        } else {
+            $vaccinated = VaccinatedChild::all();
+        }
+
+        return $vaccinated;
+    }
 }

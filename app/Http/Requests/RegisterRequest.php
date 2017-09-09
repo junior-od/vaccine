@@ -32,7 +32,7 @@ class RegisterRequest extends FormRequest
             'contact_phone' => 'required|numeric',
             'address' => 'required',
             'vaccine_name' => 'required',
-            'reported_by' => 'required|numeric',
+            //'reported_by' => 'required|numeric',
             'sex' => 'required',
         ];
     }
