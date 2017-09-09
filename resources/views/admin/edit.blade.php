@@ -4,7 +4,7 @@
 	<div class="container">
 			<div class="row mt">
 				<div class="text-center">
-					<h3>Register Child</h3>
+					<h3>Edit Child Details</h3>
 					<hr>
 				</div>
 			</div>
@@ -14,7 +14,7 @@
 	              <div class="panel-heading">xx</div>
 	                <div class="panel-body">
 
-                    {!! Form::open(['method' => 'POST', 'route' => ('register.child.save')]) !!}
+                    {!! Form::open(['method' => 'POST', 'url' => ('admin/update/'. $child->id)]) !!}
 
     									@include ('admin.partials.form')
 

@@ -13,6 +13,7 @@ if (!function_exists('get_user_role')) {
 
       }
   }
+
 }
 
 if (!function_exists('checkPermission')) {
@@ -29,4 +30,23 @@ if (!function_exists('checkPermission')) {
 
       return false;
 	}
+
+}
+
+if (!function_exists('func_username')) {
+
+	function func_username($id)
+	{
+      try {
+
+          $user = User::find($id);
+
+      } catch(\Exception $e) {
+
+          return 'User does not exist';
+      }
+
+      return $user->first_name . ' ' . $user->last_name;
+	}
+
 }

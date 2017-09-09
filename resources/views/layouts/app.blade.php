@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ asset('css/dropzone.css') }}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ asset('css/vaccine.css') }}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ asset('css/sweet-alert.css') }}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ asset('css/components.css') }}" rel="stylesheet" type="text/css" media="all" />
@@ -82,10 +83,18 @@
     </div>
 
     <!-- Scripts -->
-    {{ Html::script('js/app.js') }}
+
     {{ Html::script('js/sweet-alert.js') }}
     {{ Html::script('js/jquery-1.10.2.min.js') }}
     @include('layouts.flash')
     {{ Html::script('js/pace.min.js') }}
+    {{ Html::script('js/dropzone.js') }}
+    {{ Html::script('js/main.js') }}
+    {{ Html::script('js/bootstrap.min.js') }}
+    {{ Html::script('js/jquery.dataTables.min.js') }}
+    {{ Html::script('js/dataTables.bootstrap.min.js') }}
+    {{ Html::script('js/dataTables.responsive.min.js') }}
+    {{ Html::script('js/responsive.bootstrap.min.js') }}
+
 </body>
 </html>

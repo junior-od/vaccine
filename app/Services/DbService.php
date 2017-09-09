@@ -36,4 +36,21 @@ class DbService {
 
         return $vaccinated;
     }
+
+    public function find_child($id)
+    {
+        $child = VaccinatedChild::findOrFail($id);
+
+        return $child;
+    }
+
+    public function updateChild($id, $request)
+    {
+        $child = $this->find_child($id);
+
+        unset($request['_token']);
+        
+        VaccinatedChild::where('id', $id)
+        ->update($request);
+    }
 }

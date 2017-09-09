@@ -15,26 +15,41 @@
 		<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" style="border:solid 1px #d3e0e9;border-bottom: solid 1px #d3e0e9; background-color: white;">
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Price (₦)</th>
-					<th>Quantity</th>
-					<th>Category</th>
-					<th>Sub-Category</th>
-					<th>Actions</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Guardian First Name</th>
+					<th>Guardian Last Name</th>
+					<th>Gender</th>
+					<th>Contact Phone</th>
+					<th>Address</th>
+					<th>Vaccine Name</th>
+					<th>Reported By</th>
+					@if (get_user_role() == 'Admin')
+					<th>Action</th>
+					@endif
 				</tr>
 			</thead>
 			<tbody class="text-left">
+				@forelse($vaccinated as $vac)
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>{{ $vac->child_first_name }}</td>
+							<td>{{ $vac->child_last_name }}</td>
+							<td>{{ $vac->guardian_first_name }}</td>
+							<td>{{ $vac->guardian_last_name }}</td>
+							<td>{{ $vac->sex }}</td>
+							<td>{{ $vac->contact_phone }}</td>
+							<td>{{ $vac->address }}</td>
+							<td>{{ $vac->vaccine_name }}</td>
+							<td>{{ func_username($vac->reported_by) }}</td>
+							@if (get_user_role() == 'Admin')
 							<td>
-								<a href="" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
-								<a href="" class="trigger_delete btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></a>
+								<a href="{{ route('edit.child.view', ['id' => $vac->id]) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
 							</td>
+							@endif
 						</tr>
+				@empty
+
+				@endforelse
 			</tbody>
 		</table>
 	</div>

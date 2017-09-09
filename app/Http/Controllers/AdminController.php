@@ -21,7 +21,7 @@ class AdminController extends Controller
     {
         $this->db = $db;
         $this->middleware('auth');
-        $this->middleware('permission:Admin');
+        $this->middleware('permission:Admin')->except(['vaccinated']);
     }
 
     /**
@@ -47,7 +47,7 @@ class AdminController extends Controller
 
         Alert::success('Child Registration Successfull');
 
-        return Redirect::Back();
+        return Redirect::route('vaccinated.child.view');
     }
 
     public function vaccinated()
@@ -55,5 +55,21 @@ class AdminController extends Controller
         $vaccinated = $this->db->getVaccinated();
 
         return view('admin.vaccinated', compact('vaccinated'));
+    }
+
+    public function edit($id)
+    {
+        $child = $this->db->find_child($id);
+
+        return view('admin.edit', compact('child'));
+    }
+
+    public function editRegisterForm($id, RegisterRequest $request)
+    {
+        $this->db->updateChild($id, $request->all());
+
+        Alert::success('Child Detail Updated');
+
+        return Redirect::route('vaccinated.child.view');
     }
 }
