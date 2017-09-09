@@ -83,6 +83,7 @@
     {{ Html::script('js/app.js') }}
     {{ Html::script('js/sweet-alert.js') }}
     {{ Html::script('js/jquery-1.10.2.min.js') }}
+    @include('layouts.flash')
     {{ Html::script('js/pace.min.js') }}
 </body>
 </html>

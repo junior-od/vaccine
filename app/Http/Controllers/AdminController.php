@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Services\DbService;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
@@ -34,6 +35,7 @@ class AdminController extends Controller
 
     public function register()
     {
+        //Alert::error('yes');
         return view('admin.register');
     }
 
