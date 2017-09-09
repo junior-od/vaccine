@@ -8,10 +8,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Vaccine') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ asset('css/vaccine.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ asset('css/sweet-alert.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ asset('css/components.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" media="all" />
+
 </head>
 <body>
     <div id="app">
@@ -52,6 +57,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="{{ route('home') }}"> Home </a>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -74,6 +80,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{ Html::script('js/app.js') }}
+    {{ Html::script('js/sweet-alert.js') }}
+    {{ Html::script('js/jquery-1.10.2.min.js') }}
+    {{ Html::script('js/pace.min.js') }}
 </body>
 </html>

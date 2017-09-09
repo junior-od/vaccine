@@ -21,7 +21,7 @@ class VaccinatedChild extends Model
      * @var array
      */
     protected $fillable = [
-        'child_first_name', 'child_last_name', 'child_age', 'guardian_first_name', 'guardian_last_name', 'contact_phone', 'address', 'vaccine_name', 'reported_by'
+        'child_first_name', 'child_last_name', 'child_age', 'guardian_first_name', 'guardian_last_name', 'contact_phone', 'address', 'sex', 'vaccine_name', 'reported_by'
     ];
 
 }

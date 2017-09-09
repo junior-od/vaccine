@@ -18,3 +18,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/super/dashboard', 'SuperAdminController@index')->name('super.dash');
 Route::get('/admin/dashboard', 'AdminController@index')->name('admin.dash');
+Route::get('/admin/register', 'AdminController@register')->name('register.child.view');
+Route::get('/admin/register/save', 'AdminController@saveRegisterForm')->name('register.child.save');
