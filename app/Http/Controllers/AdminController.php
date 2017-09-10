@@ -21,7 +21,7 @@ class AdminController extends Controller
     {
         $this->db = $db;
         $this->middleware('auth');
-        $this->middleware('permission:Admin')->except(['vaccinated']);
+        $this->middleware('permission:Admin')->except(['registered']);
     }
 
     /**
@@ -31,9 +31,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $vaccinated = $this->db->getVaccinated();
+        $registered = $this->db->getRegistered();
 
-        return view('admin.home', compact('vaccinated'));
+        return view('admin.home', compact('registered'));
     }
 
     public function register()
@@ -45,16 +45,39 @@ class AdminController extends Controller
     {
         $this->db->register($request->all());
 
-        Alert::success('Child Registration Successfull');
+        if ($this->db->vaccine_choice($request->vaccine_name, $request->vaccine_given) == false) {
 
-        return Redirect::route('vaccinated.child.view');
+            Alert::error('You have to enter a vaccine name');
+
+            return Redirect::back();
+        }
+
+        if ($this->db->vaccine_age_below($request->child_age, $request->vaccine_given) == false) {
+
+            Alert::error('This child has to be given a vaccine');
+
+            return Redirect::back();
+
+        }
+
+        if ($this->db->vaccine_age_above($request->child_age, $request->vaccine_given) == false) {
+
+            Alert::error('This child does not need a vaccine');
+
+            return Redirect::back();
+
+        }
+
+        Alert::success('Child Registration Successful');
+
+        return Redirect::route('registered.child.view');
     }
 
-    public function vaccinated()
+    public function registered()
     {
-        $vaccinated = $this->db->getVaccinated();
+        $registered = $this->db->getRegistered();
 
-        return view('admin.vaccinated', compact('vaccinated'));
+        return view('admin.registered', compact('registered'));
     }
 
     public function edit($id)
@@ -68,8 +91,32 @@ class AdminController extends Controller
     {
         $this->db->updateChild($id, $request->all());
 
+        if ($this->db->vaccine_choice($request->vaccine_name, $request->vaccine_given) == false) {
+
+            Alert::error('You have to enter a vaccine name');
+
+            return Redirect::back();
+
+        }
+
+        if ($this->db->vaccine_age_below($request->child_age, $request->vaccine_given) == false) {
+
+            Alert::error('This child has to be given a vaccine');
+
+            return Redirect::back();
+
+        }
+
+        if ($this->db->vaccine_age_above($request->child_age, $request->vaccine_given) == false) {
+
+            Alert::error('This child does not need a vaccine');
+
+            return Redirect::back();
+
+        }
+
         Alert::success('Child Detail Updated');
 
-        return Redirect::route('vaccinated.child.view');
+        return Redirect::route('registered.child.view');
     }
 }

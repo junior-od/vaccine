@@ -96,6 +96,6 @@
     {{ Html::script('js/dataTables.bootstrap.min.js') }}
     {{ Html::script('js/dataTables.responsive.min.js') }}
     {{ Html::script('js/responsive.bootstrap.min.js') }}
-
+    @yield('scripts')
 </body>
 </html>

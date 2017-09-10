@@ -5,6 +5,7 @@ namespace App\Services;
 use DB;
 use Auth;
 use App\User;
+use Carbon\Carbon;
 use App\VaccinatedChild;
 
 class DbService {
@@ -25,7 +26,7 @@ class DbService {
         return true;
     }
 
-    public function getVaccinated()
+    public function getRegistered()
     {
         if (get_user_role() == 'Admin') {
             $vaccinated = VaccinatedChild::where('reported_by', Auth::id())
@@ -45,22 +46,20 @@ class DbService {
         return $vaccinated;
     }
 
-    public function vaccine_given_male()
+    public function male()
     {
-        $vaccinated = VaccinatedChild::where('vaccine_given', true)
-                      ->where('sex', 'male')
-                      ->get();
+        $male = VaccinatedChild::where('sex', 'male')
+                ->get();
 
-        return $vaccinated;
+        return $male;
     }
 
-    public function vaccine_given_female()
+    public function female()
     {
-        $vaccinated = VaccinatedChild::where('vaccine_given', true)
-                      ->where('sex', 'female')
-                      ->get();
+        $female = VaccinatedChild::where('sex', 'female')
+                  ->get();
 
-        return $vaccinated;
+        return $female;
     }
 
     public function find_child($id)
@@ -78,5 +77,62 @@ class DbService {
 
         VaccinatedChild::where('id', $id)
         ->update($request);
+    }
+
+    public function vaccine_choice($vaccine, $choice)
+    {
+        if ($vaccine == "" && $choice == true) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function vaccine_age_below($age, $choice)
+    {
+        if ($age < 10 && $choice == false) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function vaccine_age_above($age, $choice)
+    {
+        if ($age > 10 && $choice == true) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function registered_today()
+    {
+        $today = Carbon::today()->format('Y-m-d');
+
+        $children = VaccinatedChild::where('created_at', 'LIKE', "%$today%")
+                    ->get();
+
+        return $children;
+    }
+
+    public function registered_yesterday()
+    {
+        $day = Carbon::today()->subdays(1)->format('Y-m-d');
+
+        $children = VaccinatedChild::where('created_at', 'LIKE', "%$day%")
+                    ->get();
+
+        return $children;
+    }
+
+    public function registered_two_days_ago()
+    {
+        $day = Carbon::today()->subdays(2)->format('Y-m-d');
+
+        $children = VaccinatedChild::where('created_at', 'LIKE', "%$day%")
+                    ->get();
+
+        return $children;
     }
 }

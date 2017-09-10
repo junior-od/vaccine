@@ -21,13 +21,13 @@
           </div>
           <div class="details">
             <div class="number">
-              {{ count($vaccinated) }}
+              {{ count($registered) }}
             </div>
             <div class="desc">
               Registered Children (By me)
             </div>
           </div>
-          <a class="more" href="{{ route('vaccinated.child.view') }}">
+          <a class="more" href="{{ route('registered.child.view') }}">
             Select <i class="m-icon-swapright m-icon-white"></i>
           </a>
         </div>

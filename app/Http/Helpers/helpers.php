@@ -61,3 +61,22 @@ if (!function_exists('func_perc_vac')) {
 		}
 
 }
+
+if (!function_exists('func_perc_gender')) {
+
+		function func_perc_gender($value)
+		{
+				$perc = $value * 100 / 60000;
+
+				return $perc;
+		}
+
+}
+
+if (!function_exists('day_register_target')) {
+
+		function day_register_target()
+		{
+				return 100;
+		}
+}

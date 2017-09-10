@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
                 'password' 		=>   bcrypt('password'),
                 'telephone'	=>	'09028742948',
                 'role_id' => 1,
+                'api_token' => 'y9ntVwhwC1wBulTzHMSIFwnLeiIFoybWAmhnivfqxP2BlNeLe7aLB59rJuOX',
             ],
             [
                 'first_name'	=>	'John',

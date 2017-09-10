@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Alert;
 use App\Services\DbService;
-use App\Services\ChartService;
 use Illuminate\Http\Request;
+use App\Services\ChartService;
 use Illuminate\Support\Facades\Redirect;
 
 class SuperAdminController extends Controller
@@ -28,18 +28,27 @@ class SuperAdminController extends Controller
             return Redirect::route('admin.home');
         }
 
-        $vaccinated = $this->db->getVaccinated();
+        $registered = $this->db->getRegistered();
 
-        return view('sup-admin.home', compact('vaccinated'));
+        return view('sup-admin.home', compact('registered'));
     }
 
     public function dashboard()
     {
+        $male = $this->db->male();
+        $female = $this->db->female();
         $vaccinated = $this->db->vaccine_given();
-        $vaccinated_male = $this->db->vaccine_given_male();
-        $vaccinated_female = $this->db->vaccine_given();
+        $registered_today_count = $this->db->registered_today();
+        $performanceByGender = $this->chart->performanceByGender();
+        $performanceByTotalReg = $this->chart->performanceByTotalReg();
+        $performanceByDailyTarget = $this->chart->performanceByDailyTarget();
+        $performanceForLastThreeDays = $this->chart->performanceForLastThreeDays();
 
-        return view('sup-admin.dashboard', compact('vaccinated', 'vaccinated_male',
-                                                   'vaccinated_female'));
+        return view('sup-admin.dashboard', compact('vaccinated', 'male',
+                                                   'female', 'performanceByGender',
+                                                   'registered_today',
+                                                   'performanceByTotalReg',
+                                                   'performanceByDailyTarget',
+                                                   'performanceForLastThreeDays'));
     }
 }
