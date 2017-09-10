@@ -108,9 +108,9 @@ class DbService {
 
     public function registered_today()
     {
-        $today = Carbon::today()->format('Y-m-d');
+        $today = Carbon::today()->format('Y-m-d H:i:s');
 
-        $children = VaccinatedChild::where('created_at', 'LIKE', "$today%")
+        $children = VaccinatedChild::whereDate('created_at', "$today")
                     ->get();
 
         return $children;
@@ -118,9 +118,9 @@ class DbService {
 
     public function registered_yesterday()
     {
-        $day = Carbon::today()->subdays(1)->format('Y-m-d');
+        $day = Carbon::today()->subdays(1)->format('Y-m-d H:i:s');
 
-        $children = VaccinatedChild::where('created_at', 'LIKE', "$day%")
+        $children = VaccinatedChild::whereDate('created_at', "$day")
                     ->get();
 
         return $children;
@@ -130,7 +130,7 @@ class DbService {
     {
         $day = Carbon::today()->subdays(2)->format('Y-m-d');
 
-        $children = VaccinatedChild::where('created_at', 'LIKE', "$day%")
+        $children = VaccinatedChild::whereDate('created_at', "$day%")
                     ->get();
 
         return $children;
