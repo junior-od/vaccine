@@ -110,15 +110,8 @@ class DbService {
     {
         $today = Carbon::today()->format('Y-m-d');
 
-        try {
-            $children = VaccinatedChild::where('created_at', 'LIKE', "%$today%")
-                        ->get();
-
-        } catch (\Exception $e) {
-
-            $children = collect();
-
-        }
+        $children = VaccinatedChild::where('created_at', 'LIKE', "$today%")
+                    ->get();
 
         return $children;
     }
@@ -127,14 +120,8 @@ class DbService {
     {
         $day = Carbon::today()->subdays(1)->format('Y-m-d');
 
-        try {
-            $children = VaccinatedChild::where('created_at', 'LIKE', "%$day%")
-                        ->get();
-        } catch (\Exception $e) {
-
-            $children = collect();
-
-        }
+        $children = VaccinatedChild::where('created_at', 'LIKE', "$day%")
+                    ->get();
 
         return $children;
     }
@@ -143,16 +130,8 @@ class DbService {
     {
         $day = Carbon::today()->subdays(2)->format('Y-m-d');
 
-        try {
-
-            $children = VaccinatedChild::where('created_at', 'LIKE', "%$day%")
-                        ->get();
-
-        } catch(\Exception $e) {
-
-            $children = collect();
-
-        }
+        $children = VaccinatedChild::where('created_at', 'LIKE', "$day%")
+                    ->get();
 
         return $children;
     }
