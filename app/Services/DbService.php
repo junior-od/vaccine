@@ -110,9 +110,12 @@ class DbService {
     {
         $today = Carbon::today()->format('Y-m-d');
 
-        $children = collect();
         $children = VaccinatedChild::where('created_at', 'LIKE', "%$today%")
                     ->get();
+
+        if (empty($children->toArray())) {
+            $children = collect();
+        }
 
         return $children;
     }
@@ -121,9 +124,12 @@ class DbService {
     {
         $day = Carbon::today()->subdays(1)->format('Y-m-d');
 
-        $children = collect();
         $children = VaccinatedChild::where('created_at', 'LIKE', "%$day%")
                     ->get();
+
+        if (empty($children->toArray())) {
+            $children = collect();
+        }
 
         return $children;
     }
@@ -132,9 +138,12 @@ class DbService {
     {
         $day = Carbon::today()->subdays(2)->format('Y-m-d');
 
-        $children = collect();
         $children = VaccinatedChild::where('created_at', 'LIKE', "%$day%")
                     ->get();
+
+        if (empty($children->toArray())) {
+            $children = collect();
+        }
 
         return $children;
     }
