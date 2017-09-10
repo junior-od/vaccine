@@ -37,6 +37,32 @@ class DbService {
         return $vaccinated;
     }
 
+    public function vaccine_given()
+    {
+        $vaccinated = VaccinatedChild::where('vaccine_given', true)
+                      ->get();
+
+        return $vaccinated;
+    }
+
+    public function vaccine_given_male()
+    {
+        $vaccinated = VaccinatedChild::where('vaccine_given', true)
+                      ->where('sex', 'male')
+                      ->get();
+
+        return $vaccinated;
+    }
+
+    public function vaccine_given_female()
+    {
+        $vaccinated = VaccinatedChild::where('vaccine_given', true)
+                      ->where('sex', 'female')
+                      ->get();
+
+        return $vaccinated;
+    }
+
     public function find_child($id)
     {
         $child = VaccinatedChild::findOrFail($id);
@@ -49,7 +75,7 @@ class DbService {
         $child = $this->find_child($id);
 
         unset($request['_token']);
-        
+
         VaccinatedChild::where('id', $id)
         ->update($request);
     }

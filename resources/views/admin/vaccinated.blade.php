@@ -4,7 +4,7 @@
 <div class="container pt">
 	<div class="row mt">
 		<div class="text-center">
-			<h3>VACCINATED CHILDREN</h3>
+			<h3>REGISTERED CHILDREN</h3>
 			<hr>
 		</div>
 	</div>
@@ -23,6 +23,7 @@
 					<th>Contact Phone</th>
 					<th>Address</th>
 					<th>Vaccine Name</th>
+					<th>Vaccine Given</th>
 					<th>Reported By</th>
 					@if (get_user_role() == 'Admin')
 					<th>Action</th>
@@ -40,6 +41,7 @@
 							<td>{{ $vac->contact_phone }}</td>
 							<td>{{ $vac->address }}</td>
 							<td>{{ $vac->vaccine_name }}</td>
+							<td>@if($vac->vaccine_given == true) Yes @else No @endif</td>
 							<td>{{ func_username($vac->reported_by) }}</td>
 							@if (get_user_role() == 'Admin')
 							<td>

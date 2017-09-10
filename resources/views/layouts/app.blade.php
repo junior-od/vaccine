@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ asset('css/AdminLTE.min.css') }}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ asset('css/dropzone.css') }}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ asset('css/vaccine.css') }}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ asset('css/sweet-alert.css') }}" rel="stylesheet" type="text/css" media="all" />

@@ -26,13 +26,12 @@ class RegisterRequest extends FormRequest
         return [
             'child_first_name' => 'required',
             'child_last_name' => 'required',
-            'child_age' => 'required|numeric|valid_age',
+            'child_age' => 'required|numeric',
             'guardian_first_name' => 'required',
             'guardian_last_name' => 'required',
             'contact_phone' => 'required|numeric',
             'address' => 'required',
-            'vaccine_name' => 'required',
-            //'reported_by' => 'required|numeric',
+            'vaccine_given' => 'required',
             'sex' => 'required',
         ];
     }

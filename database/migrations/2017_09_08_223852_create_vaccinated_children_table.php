@@ -22,7 +22,8 @@ class CreateVaccinatedChildrenTable extends Migration
             $table->string('guardian_last_name');
             $table->string('contact_phone');
             $table->string('address');
-            $table->string('vaccine_name');
+            $table->string('vaccine_name')->nullable();
+            $table->integer('vaccine_given')->default(false);
             $table->integer('reported_by')->unsigned();
             $table->foreign('reported_by')->references('id')->on('users');
             $table->timestamps();

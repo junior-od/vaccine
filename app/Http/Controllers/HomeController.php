@@ -16,9 +16,9 @@ class HomeController extends Controller
     public function index()
     {
         if (get_user_role() == 'Admin') {
-            return Redirect::route('admin.dash');
+            return Redirect::route('admin.home');
         }
 
-        return Redirect::route('super.dash');
+        return Redirect::route('super.home');
     }
 }

@@ -69,7 +69,14 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
+      <div class="form-group {{ $errors->has('vaccine_given') ? 'has-error' : ''}}">
+          {!! Form::label('vaccine_given', 'Vaccine Given', ['class' => 'control-label']) !!}
+          {!! Form::select('vaccine_given', [1 => 'Yes', 0 => 'No'], isset($child) ? $child->vaccine_given: null, ['class' => 'form-control']) !!}
+          {!! $errors->first('vaccine_given', '<p class="help-block">:message</p>') !!}
+      </div>
+  </div>
+  <div class="col-md-6">
       <div class="form-group {{ $errors->has('address') ? 'has-error' : ''}}">
           {!! Form::label('address', 'Address', ['class' => 'control-label']) !!}
           {!! Form::text('address', isset($child) ? $child->address: null, ['class' => 'form-control']) !!}

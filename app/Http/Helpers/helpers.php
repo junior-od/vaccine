@@ -50,3 +50,14 @@ if (!function_exists('func_username')) {
 	}
 
 }
+
+if (!function_exists('func_perc_vac')) {
+
+		function func_perc_vac($value)
+		{
+				$perc = $value * 100 / 83567;
+
+				return $perc;
+		}
+
+}

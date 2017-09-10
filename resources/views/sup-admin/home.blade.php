@@ -24,7 +24,7 @@
               {{ count($vaccinated) }}
             </div>
             <div class="desc">
-              Vaccinated Children
+              Registered Children
             </div>
           </div>
           <a class="more" href="{{ route('vaccinated.child.view') }}">
@@ -45,7 +45,7 @@
               Dashboard
             </div>
           </div>
-          <a class="more" href="">
+          <a class="more" href="{{ route('super.dash') }}">
             Select <i class="m-icon-swapright m-icon-white"></i>
           </a>
         </div>

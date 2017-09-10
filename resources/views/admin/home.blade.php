@@ -24,7 +24,7 @@
               {{ count($vaccinated) }}
             </div>
             <div class="desc">
-              Vaccinated Children (By me)
+              Registered Children (By me)
             </div>
           </div>
           <a class="more" href="{{ route('vaccinated.child.view') }}">
