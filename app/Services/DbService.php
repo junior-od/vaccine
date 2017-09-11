@@ -79,36 +79,9 @@ class DbService {
         ->update($request);
     }
 
-    public function vaccine_choice($vaccine, $choice)
-    {
-        if ($vaccine == "" && $choice == true) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public function vaccine_age_below($age, $choice)
-    {
-        if ($age < 10 && $choice == false) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public function vaccine_age_above($age, $choice)
-    {
-        if ($age > 10 && $choice == true) {
-            return false;
-        }
-
-        return true;
-    }
-
     public function registered_today()
     {
-        $today = Carbon::today()->format('Y-m-d H:i:s');
+        $today = Carbon::today()->format('Y-m-d');
 
         $children = VaccinatedChild::whereDate('created_at', "$today")
                     ->get();
@@ -118,7 +91,7 @@ class DbService {
 
     public function registered_yesterday()
     {
-        $day = Carbon::today()->subdays(1)->format('Y-m-d H:i:s');
+        $day = Carbon::today()->subdays(1)->format('Y-m-d');
 
         $children = VaccinatedChild::whereDate('created_at', "$day")
                     ->get();
@@ -130,9 +103,10 @@ class DbService {
     {
         $day = Carbon::today()->subdays(2)->format('Y-m-d');
 
-        $children = VaccinatedChild::whereDate('created_at', "$day%")
+        $children = VaccinatedChild::whereDate('created_at', "$day")
                     ->get();
 
         return $children;
     }
+
 }
