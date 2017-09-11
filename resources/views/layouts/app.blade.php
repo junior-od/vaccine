@@ -81,6 +81,9 @@
         </nav>
 
         @yield('content')
+
+        <div id="loading-s" class="loading hide">Loading&#8230;</div>
+
     </div>
 
     <!-- Scripts -->

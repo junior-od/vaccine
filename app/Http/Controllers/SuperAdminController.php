@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Alert;
 use App\Services\DbService;
 use Illuminate\Http\Request;
+use App\Services\ApiService;
 use App\Services\ChartService;
 use Illuminate\Support\Facades\Redirect;
 
@@ -12,11 +13,13 @@ class SuperAdminController extends Controller
 {
 
     protected $db;
+    protected $api;
     protected $chart;
 
-    public function __construct(DbService $db, ChartService $chart)
+    public function __construct(DbService $db, ChartService $chart, ApiService $api)
     {
         $this->db = $db;
+        $this->api = $api;
         $this->chart = $chart;
         $this->middleware('auth');
         $this->middleware('permission:Super Admin')->except(['index']);
@@ -50,5 +53,30 @@ class SuperAdminController extends Controller
                                                    'performanceByTotalReg',
                                                    'performanceByDailyTarget',
                                                    'performanceForLastThreeDays'));
+    }
+
+    public function api_calls()
+    {
+        return view('sup-admin.api');
+    }
+
+    public function apiCall($type, Request $request)
+    {
+        if ($request->ajax()) {
+
+            try {
+
+                $call = $this->api->$type();
+
+            } catch (\Exception $e) {
+
+                return response()->json(['status' => 'error'], 400);
+
+            }
+
+            $html = view('sup-admin.partials.response', compact('call', 'type'))->render();
+
+            return response()->json(['status' => 'success', 'html' => $html], 200);
+        }
     }
 }

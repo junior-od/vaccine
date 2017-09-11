@@ -63,7 +63,7 @@
               Api Calls
             </div>
           </div>
-          <a class="more" href="">
+          <a class="more" href="{{ route('super.api.calls') }}">
             Select <i class="m-icon-swapright m-icon-white"></i>
           </a>
         </div>
