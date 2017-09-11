@@ -100,7 +100,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
   
-  /registrations/vaccinated_today:
+  /registrations/vaccinated_given:
     post:
       description: Total number of vaccinated children
       operationId: vaccinatedChildren
