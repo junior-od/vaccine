@@ -38,3 +38,20 @@ Route::get('/insert', function () {
 
     dd('done');
 });
+
+Route::get('/insert/worker', function (\Faker\Generator $faker) {
+
+
+    for ($i = 0; $i <= 49; $i++) {
+          User::create([
+              'first_name' => substr($faker->name, 0, strpos($faker->name, " ")),
+              'last_name' => substr($faker->name, 0, strpos($faker->name, " ")),
+              'email' => $faker->unique()->safeEmail,
+              'telephone' => $faker->phoneNumber,
+              'role_id' => 2,
+              'password' => bcrypt('password'),
+          ]);
+    }
+
+    dd('done');
+});

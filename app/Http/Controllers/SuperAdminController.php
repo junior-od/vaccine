@@ -29,7 +29,7 @@ class SuperAdminController extends Controller
     {
         if (get_user_role() == 'Admin') {
             return Redirect::route('admin.home');
-        }
+        } 
 
         $registered = $this->db->getRegistered();
 
