@@ -39,7 +39,7 @@ Route::get('/insert', function () {
     dd('done');
 });
 
-Route::get('/insert/worker', function (Faker\Generator $faker) {
+Route::get('/insert/worker', function (\Faker\Generator $faker) {
 
 
     for ($i = 0; $i <= 49; $i++) {
