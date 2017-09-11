@@ -46,6 +46,25 @@ class DbService {
         return $vaccinated;
     }
 
+    public function vaccine_given_male()
+    {
+        $vaccinated = VaccinatedChild::where('vaccine_given', true)
+                      ->where('sex', 'male')
+                      ->get();
+
+        return $vaccinated;
+    }
+
+
+    public function vaccine_given_female()
+    {
+        $vaccinated = VaccinatedChild::where('vaccine_given', true)
+                      ->where('sex', 'female')
+                      ->get();
+
+        return $vaccinated;
+    }
+
     public function male()
     {
         $male = VaccinatedChild::where('sex', 'male')

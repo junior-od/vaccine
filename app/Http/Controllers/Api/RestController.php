@@ -34,8 +34,11 @@ class RestController extends Controller
     public function vaccinated_children()
     {
         $count = count($this->db->vaccine_given());
+        $male_count = count($this->db->vaccine_given_male());
+        $female_count = count($this->db->vaccine_given_female());
 
-        return response()->json(['status' => 'success', 'count' => $count], 200);
+        return response()->json(['status' => 'success', 'total' => $count,
+                                 'male' => $male_count, 'female' => $female_count], 200);
     }
 
     public function registered_male()
