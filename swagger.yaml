@@ -12,7 +12,7 @@ info:
     name: MIT
     url: http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT
 host: vaccine-algorism.herokuapp.com
-basePath: /api/vi
+basePath: /api/v1
 schemes:
   - http
 consumes:
