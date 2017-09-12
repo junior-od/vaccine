@@ -56,3 +56,11 @@ Route::get('/insert/worker', function (\Faker\Generator $faker) {
 
     dd('done');
 });
+
+
+Route::get('delete/last', function () {
+    User::where('id', 52)
+    ->delete();
+
+    dd('done');
+});
