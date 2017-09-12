@@ -89,7 +89,7 @@ if (!function_exists('day_register_target')) {
 
 				$pending_past = $supposed_registerations_past - count($registered) ;
 
-				$worklist = $pending_past + 400 / 50;
+				$worklist = $pending_past + 400;
 
 				return $worklist;
 		}
