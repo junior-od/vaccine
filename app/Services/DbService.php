@@ -6,6 +6,7 @@ use DB;
 use Auth;
 use App\User;
 use Carbon\Carbon;
+use App\WorkingHour;
 use App\VaccinatedChild;
 
 class DbService {
@@ -134,6 +135,46 @@ class DbService {
                  ->get();
 
         return $users;
+    }
+
+    public function find_user($id)
+    {
+        $user = User::findOrFail($id);
+
+        if ($user->role_id == 1) {
+            return false;
+        }
+
+        return $user;
+    }
+
+    public function user_shift($id)
+    {
+        $shift = WorkingHour::where('user_id', $id)
+                 ->get();
+
+        return $shift[0];
+    }
+
+    public function updateUser($id, $request)
+    {
+        User::where('id', $id)
+        ->update([
+          'first_name' => $request->first_name,
+          'last_name' => $request->last_name,
+          'email' => $request->email,
+          'telephone' => $request->telephone
+        ]);
+    }
+
+    public function updateWorkHr($id, $request)
+    {
+        WorkingHour::where('user_id', $id)
+        ->update([
+          'wage_per_hour' => $request->wages,
+          'from' => $request->shift_from,
+          'to' => $request->shift_to
+        ]);
     }
 
 }

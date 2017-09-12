@@ -7,6 +7,7 @@ use App\Services\DbService;
 use Illuminate\Http\Request;
 use App\Services\ApiService;
 use App\Services\ChartService;
+use App\Http\Requests\EditUserRequest;
 use Illuminate\Support\Facades\Redirect;
 
 class SuperAdminController extends Controller
@@ -85,5 +86,30 @@ class SuperAdminController extends Controller
         $users = $this->db->adminUsers();
 
         return view('sup-admin.users', compact('users'));
+    }
+
+    public function editUser($id)
+    {
+        $user = $this->db->find_user($id);
+        $shift = $this->db->user_shift($id);
+
+        return view('sup-admin.edit-user', compact('user', 'shift'));
+    }
+
+    public function update_user($id, EditUserRequest $request)
+    {
+        if (func_check_if_over_budget($request->id, $request->wages)) {
+
+            Alert::error('Adding this wage amount exceeds the overall budget. Please reduce');
+
+            return Redirect::back();
+        }
+
+        $this->db->updateUser($id, $request);
+        $this->db->updateWorkHr($id, $request);
+
+        Alert::success('User Successfully Updated');
+
+        return Redirect::route('admin.users');
     }
 }

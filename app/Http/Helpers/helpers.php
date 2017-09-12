@@ -2,6 +2,7 @@
 
 use App\User;
 use Auth as Auth;
+use App\WorkingHour;
 
 if (!function_exists('get_user_role')) {
 
@@ -78,5 +79,44 @@ if (!function_exists('day_register_target')) {
 		function day_register_target()
 		{
 				return 100;
+		}
+}
+
+if (!function_exists('user_working_hours')) {
+
+		function user_working_hours($id)
+		{
+				$wr = WorkingHour::where('user_id', $id)
+							->get();
+
+				return $wr[0]->from . ' - ' . $wr[0]->to;
+		}
+}
+
+if (!function_exists('func_check_if_over_budget')) {
+
+		function func_check_if_over_budget($user_id, $amount)
+		{
+				$total = WorkingHour::where('user_id', $user_id)
+								 ->sum('wage_per_hour');
+
+				$sum = ($total * 2) + ($amount * 2) * 50 * 60;
+
+				if ($sum > 50000) {
+						return true;
+				}
+
+				return false;
+		}
+}
+
+if (!function_exists('func_user_wage')) {
+
+		function func_user_wage($user_id)
+		{
+				$w = WorkingHour::where('user_id', $user_id)
+						 ->get();
+
+				return $w[0]->wage_per_hour;
 		}
 }

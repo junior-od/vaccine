@@ -77,6 +77,7 @@ return [
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
     'same'                 => 'The :attribute and :other must match.',
     'valid_age'            => 'Only children under age 10 are allowed',
+    'valid_time'           => 'invalid time format, try hh:mm:ss',
     'size'                 => [
         'numeric' => 'The :attribute must be :size.',
         'file'    => 'The :attribute must be :size kilobytes.',
