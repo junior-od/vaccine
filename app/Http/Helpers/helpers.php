@@ -3,6 +3,7 @@
 use App\User;
 use Auth as Auth;
 use App\WorkingHour;
+use App\VaccinatedChild;
 
 if (!function_exists('get_user_role')) {
 
@@ -78,7 +79,19 @@ if (!function_exists('day_register_target')) {
 
 		function day_register_target()
 		{
-				return 100;
+				$registered = VaccinatedChild::all();
+
+				$today = strtotime(date('Y-m-d'));
+				$end = strtotime('2017-11-07');
+				$days_left = ($end - $today) / (60 * 60 * 24);
+
+				$supposed_registerations_past = 400 * (60 - $days_left);
+
+				$pending_past = $supposed_registerations_past - count($registered) ;
+
+				$worklist = $pending_past + 400 / 50;
+
+				return $worklist;
 		}
 }
 

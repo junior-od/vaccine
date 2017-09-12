@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Alert;
+use Auth as Auth;
 use App\Services\DbService;
 use Illuminate\Http\Request;
 use App\Services\ApiService;
 use App\Services\ChartService;
+use App\Services\HelperService;
 use App\Http\Requests\EditUserRequest;
 use Illuminate\Support\Facades\Redirect;
 
@@ -16,12 +18,15 @@ class SuperAdminController extends Controller
     protected $db;
     protected $api;
     protected $chart;
+    protected $helper;
 
-    public function __construct(DbService $db, ChartService $chart, ApiService $api)
+    public function __construct(DbService $db, ChartService $chart, ApiService $api,
+                                HelperService $helper)
     {
         $this->db = $db;
         $this->api = $api;
         $this->chart = $chart;
+        $this->helper = $helper;
         $this->middleware('auth');
         $this->middleware('permission:Super Admin')->except(['index']);
     }
@@ -29,6 +34,11 @@ class SuperAdminController extends Controller
     public function index()
     {
         if (get_user_role() == 'Admin') {
+
+            $target = round(day_register_target() / 50);
+
+            Alert::info('Hi ' .Auth::user()->first_name.', your outstanding target for today is '. $target . ' registrations')->persistent('Got It');
+
             return Redirect::route('admin.home');
         }
 
@@ -100,7 +110,14 @@ class SuperAdminController extends Controller
     {
         if (func_check_if_over_budget($request->id, $request->wages)) {
 
-            Alert::error('Adding this wage amount exceeds the overall budget. Please reduce');
+            Alert::info('Adding this wage amount exceeds the overall budget. Please reduce')->persistent('Okay');
+
+            return Redirect::back();
+        }
+
+        if ($this->helper->work_hour_limit($request) == false) {
+
+            Alert::info('An Admin is only allowed a 2 hour work time')->persistent('Okay');
 
             return Redirect::back();
         }

@@ -43,4 +43,13 @@ class HelperService {
         return true;
     }
 
+    public function work_hour_limit($request)
+    {
+        if (abs(strtotime($request->shift_to) - strtotime($request->shift_from)) / 60 > 120) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

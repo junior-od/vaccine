@@ -51,9 +51,14 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
+                            <li class="dropdown">
+                              <a href="#" style="color:#d73925" class="dropdown-toggle" id="countdown" data-toggle="dropdown" role="button" aria-expanded="false">
+                              </a>
+                            </li>
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                         @else
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->first_name }} <span class="caret"></span>
@@ -85,7 +90,6 @@
         <div id="loading-s" class="loading hide">Loading&#8230;</div>
 
     </div>
-
     <!-- Scripts -->
 
     {{ Html::script('js/sweet-alert.js') }}
@@ -100,5 +104,37 @@
     {{ Html::script('js/dataTables.responsive.min.js') }}
     {{ Html::script('js/responsive.bootstrap.min.js') }}
     @yield('scripts')
+    <script>
+    var end = new Date('2017-11-07 10:1 AM');
+
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var _day = _hour * 24;
+        var timer;
+
+        function showRemaining() {
+            var now = new Date();
+            var distance = end - now;
+            if (distance < 0) {
+
+                clearInterval(timer);
+                document.getElementById('countdown').innerHTML = 'EXPIRED!';
+
+                return;
+            }
+            var days = Math.floor(distance / _day);
+            var hours = Math.floor((distance % _day) / _hour);
+            var minutes = Math.floor((distance % _hour) / _minute);
+            var seconds = Math.floor((distance % _minute) / _second);
+
+            document.getElementById('countdown').innerHTML = days + 'days ';
+            document.getElementById('countdown').innerHTML += hours + 'hrs ';
+            document.getElementById('countdown').innerHTML += minutes + 'mins ';
+            document.getElementById('countdown').innerHTML += seconds + 'secs';
+        }
+
+        timer = setInterval(showRemaining, 1000);
+      </script>
 </body>
 </html>
