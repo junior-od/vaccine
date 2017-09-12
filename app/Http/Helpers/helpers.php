@@ -120,3 +120,22 @@ if (!function_exists('func_user_wage')) {
 				return $w[0]->wage_per_hour;
 		}
 }
+
+if (!function_exists('func_is_my_work_time')) {
+
+		function func_is_my_work_time()
+		{
+				if (Auth::user()->role_id == 2) {
+						$w = WorkingHour::where('user_id', Auth::id())
+								 ->get();
+
+						if (date('H:i:s') >= $w[0]->from && date('H:i:s') <= $w[0]->to) {
+								return true;
+						}
+
+						return false;
+				}
+
+				return true;
+		}
+}

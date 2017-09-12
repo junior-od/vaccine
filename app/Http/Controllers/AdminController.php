@@ -24,6 +24,7 @@ class AdminController extends Controller
         $this->db = $db;
         $this->helper = $helper;
         $this->middleware('auth');
+        $this->middleware('work.hour');
         $this->middleware('permission:Admin')->except(['registered']);
     }
 
@@ -50,14 +51,14 @@ class AdminController extends Controller
 
         if ($this->helper->vaccine_choice($request->vaccine_name, $request->vaccine_given) == false) {
 
-            Alert::error('You have to enter a vaccine name')->persistent('Okay');
+            Alert::info('You have to enter a vaccine name')->persistent('Okay');
 
             return Redirect::back();
         }
 
         if ($this->helper->vaccine_age_below($request->child_age, $request->vaccine_given) == false) {
 
-            Alert::error('This child has to be given a vaccine')->persistent('Okay');
+            Alert::info('This child has to be given a vaccine')->persistent('Okay');
 
             return Redirect::back();
 
@@ -65,7 +66,7 @@ class AdminController extends Controller
 
         if ($this->helper->vaccine_age_above($request->child_age, $request->vaccine_given) == false) {
 
-            Alert::error('This child does not need a vaccine')->persistent('Okay');
+            Alert::info('This child does not need a vaccine')->persistent('Okay');
 
             return Redirect::back();
 
@@ -96,7 +97,7 @@ class AdminController extends Controller
 
         if ($this->helper->vaccine_choice($request->vaccine_name, $request->vaccine_given) == false) {
 
-            Alert::error('You have to enter a vaccine name')->persistent('Okay');
+            Alert::info('You have to enter a vaccine name')->persistent('Okay');
 
             return Redirect::back();
 
@@ -104,7 +105,7 @@ class AdminController extends Controller
 
         if ($this->helper->vaccine_age_below($request->child_age, $request->vaccine_given) == false) {
 
-            Alert::error('This child has to be given a vaccine')->persistent('Okay');
+            Alert::info('This child has to be given a vaccine')->persistent('Okay');
 
             return Redirect::back();
 
@@ -112,7 +113,7 @@ class AdminController extends Controller
 
         if ($this->helper->vaccine_age_above($request->child_age, $request->vaccine_given) == false) {
 
-            Alert::error('This child does not need a vaccine')->persistent('Okay');
+            Alert::info('This child does not need a vaccine')->persistent('Okay');
 
             return Redirect::back();
 

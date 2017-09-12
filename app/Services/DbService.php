@@ -161,9 +161,9 @@ class DbService {
         User::where('id', $id)
         ->update([
           'first_name' => $request->first_name,
-          'last_name' => $request->last_name,
-          'email' => $request->email,
-          'telephone' => $request->telephone
+          'last_name'  => $request->last_name,
+          'email'      => $request->email,
+          'telephone'  => $request->telephone
         ]);
     }
 
@@ -172,8 +172,8 @@ class DbService {
         WorkingHour::where('user_id', $id)
         ->update([
           'wage_per_hour' => $request->wages,
-          'from' => $request->shift_from,
-          'to' => $request->shift_to
+          'from'          => $request->shift_from,
+          'to'            => $request->shift_to
         ]);
     }
 
