@@ -128,4 +128,12 @@ class DbService {
         return $children;
     }
 
+    public function adminUsers()
+    {
+        $users = User::where('role_id', 2)
+                 ->get();
+
+        return $users;
+    }
+
 }

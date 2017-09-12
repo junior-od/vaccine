@@ -13,7 +13,7 @@
 </div>
 <div class="page-content-wrapper" style="margin-top: 40px;">
   <div class="page-content text-center">
-    <div class="row col-md-10 col-md-offset-2">
+    <div class="row col-md-10 col-md-offset-3">
       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
         <div class="dashboard-stat blue-madison">
           <div class="visual">

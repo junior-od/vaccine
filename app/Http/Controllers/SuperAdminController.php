@@ -29,7 +29,7 @@ class SuperAdminController extends Controller
     {
         if (get_user_role() == 'Admin') {
             return Redirect::route('admin.home');
-        } 
+        }
 
         $registered = $this->db->getRegistered();
 
@@ -78,5 +78,12 @@ class SuperAdminController extends Controller
 
             return response()->json(['status' => 'success', 'html' => $html], 200);
         }
+    }
+
+    public function adminUsers()
+    {
+        $users = $this->db->adminUsers();
+
+        return view('sup-admin.users', compact('users'));
     }
 }

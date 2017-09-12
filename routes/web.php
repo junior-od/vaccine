@@ -23,6 +23,7 @@ Route::get('/super/home', 'SuperAdminController@index')->name('super.home');
 Route::get('/super/dashboard', 'SuperAdminController@dashboard')->name('super.dash');
 Route::get('/super/api_calls', 'SuperAdminController@api_calls')->name('super.api.calls');
 Route::get('/admin/home', 'AdminController@index')->name('admin.home');
+Route::get('/admin/users', 'SuperAdminController@adminUsers')->name('admin.users');
 Route::get('/admin/register', 'AdminController@register')->name('register.child.view');
 Route::get('/admin/edit/{id}', 'AdminController@edit')->name('edit.child.view');
 Route::get('/admin/registered', 'AdminController@registered')->name('registered.child.view');
