@@ -22,6 +22,7 @@
 					<th>Last Name</th>
 					<th>Guardian First Name</th>
 					<th>Guardian Last Name</th>
+					<th>Child Age</th>
 					<th>Gender</th>
 					<th>Contact Phone</th>
 					<th>Address</th>
@@ -40,6 +41,7 @@
 							<td>{{ $vac->child_last_name }}</td>
 							<td>{{ $vac->guardian_first_name }}</td>
 							<td>{{ $vac->guardian_last_name }}</td>
+							<td>{{ $vac->child_age }}</td>
 							<td>{{ $vac->sex }}</td>
 							<td>{{ $vac->contact_phone }}</td>
 							<td>{{ $vac->address }}</td>
