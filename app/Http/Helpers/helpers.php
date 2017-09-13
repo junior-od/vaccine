@@ -142,7 +142,7 @@ if (!function_exists('func_is_my_work_time')) {
 						$w = WorkingHour::where('user_id', Auth::id())
 								 ->get();
 
-						if (date('H:i:s') >= $w[0]->from && date('H:i:s') <= $w[0]->to) {
+						if (date('H:i:s', strtotime('1 hour')) >= $w[0]->from && date('H:i:s', strtotime('1 hour')) <= $w[0]->to) {
 								return true;
 						}
 
