@@ -17,7 +17,7 @@ A Super Admin can perform the following functions:
 
 ## Admin User Login
 
-An Admin can only log into the system during his/her work time. While logged in, the following functions can be performed:
+An Admin can only log into the system during his/her work time(2hrs a day). While logged in, the following functions can be performed:
 
 - Register children information
 - Edit children information
