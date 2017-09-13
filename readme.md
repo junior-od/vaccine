@@ -13,15 +13,15 @@ A Super Admin can perform the following functions:
 - Monitor Project progress via dashboard
 - Make Api Calls
 - View Registered Children
-- Edit Amin Users (e.g user work time)
+- Edit Admin Users (e.g user work time)
 
 ## Admin User Login
 
-An Admin can only log into the system during his/her work time. While logged in the following functions can be performed:
+An Admin can only log into the system during his/her work time. While logged in, the following functions can be performed:
 
 - Register children information
 - Edit children information
-- View children registered by me
+- View children registered by Admin
 
 | Email | Work Time | Password |
 | ------------- |-------------|-------------|
@@ -79,7 +79,7 @@ An Admin can only log into the system during his/her work time. While logged in 
 
 ## API
 
-The Api documentation for the here: [Vaccine Api](http://docs.vaccinecensus.apiary.io)
+The Api documentation can be found here: [Vaccine Api](http://docs.vaccinecensus.apiary.io)
 
 | API KEY |
 | ------------- |
