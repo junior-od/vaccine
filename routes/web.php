@@ -116,3 +116,13 @@ Route::get('working/hrs', function () {
 
     dd('done');
 });
+
+Route::get('all/users', function () {
+    $users = User::where('role_id', 2)->get();
+
+    foreach ($users as $user) {
+
+        echo $user->email . ', '.user_working_hours($user->id) . ', password <br>';
+    }
+
+});
