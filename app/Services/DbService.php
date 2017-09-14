@@ -31,9 +31,11 @@ class DbService {
     {
         if (get_user_role() == 'Admin') {
             $vaccinated = VaccinatedChild::where('reported_by', Auth::id())
+                          ->orderBy('created_at', 'DESC')
                           ->get();
         } else {
-            $vaccinated = VaccinatedChild::all();
+            $vaccinated = VaccinatedChild::orderBy('created_at', 'DESC')
+                          ->get();
         }
 
         return $vaccinated;
@@ -42,6 +44,7 @@ class DbService {
     public function vaccine_given()
     {
         $vaccinated = VaccinatedChild::where('vaccine_given', true)
+                      ->orderBy('created_at', 'DESC')
                       ->get();
 
         return $vaccinated;

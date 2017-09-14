@@ -28,6 +28,7 @@
 					<th>Address</th>
 					<th>Vaccine Name</th>
 					<th>Vaccine Given</th>
+					<th>Register Date</th>
 					<th>Reported By</th>
 					@if (get_user_role() == 'Admin')
 					<th>Action</th>
@@ -47,6 +48,7 @@
 							<td>{{ $vac->address }}</td>
 							<td>{{ $vac->vaccine_name }}</td>
 							<td>@if($vac->vaccine_given == true) Yes @else No @endif</td>
+							<td> {{ date('d M Y' , strtotime($vac->created_at)) }}
 							<td>{{ func_username($vac->reported_by) }}</td>
 							@if (get_user_role() == 'Admin')
 							<td>
