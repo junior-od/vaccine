@@ -152,3 +152,14 @@ if (!function_exists('func_is_my_work_time')) {
 				return true;
 		}
 }
+
+if (!function_exists('func_user_reg_count')) {
+
+		function func_user_reg_count($id)
+		{
+				$reg = VaccinatedChild::where('reported_by', $id)
+							 ->count('id');
+
+				return $reg;
+		}
+}

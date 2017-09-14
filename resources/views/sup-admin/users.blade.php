@@ -18,6 +18,7 @@
 					<th>Email</th>
 					<th>Shift Time</th>
 					<th>Wages ($/HR)</th>
+					<th>Register Count</th>
 					<th>Telephone</th>
 					<th>Action</th>
 				</tr>
@@ -30,6 +31,7 @@
 							<td>{{ $vac->email }}</td>
 							<td>{{ user_working_hours($vac->id) }}</td>
 							<td>{{ func_user_wage($vac->id) }}</td>
+							<td> {{ func_user_reg_count($vac->id) }}
 							<td>{{ $vac->telephone }}</td>
 							<td>
 								<a href="{{ route('super.edit.user', ['id' => $vac->id] ) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
