@@ -154,7 +154,11 @@ class DbService {
     public function user_shift($id)
     {
         $shift = WorkingHour::where('user_id', $id)
-                 ->get();
+                 ->get(); //
+
+        if (empty($shift->toArray())) {
+            return '';
+        }
 
         return $shift[0];
     }

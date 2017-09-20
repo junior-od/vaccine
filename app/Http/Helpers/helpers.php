@@ -100,9 +100,15 @@ if (!function_exists('user_working_hours')) {
 		function user_working_hours($id)
 		{
 				$wr = WorkingHour::where('user_id', $id)
-							->get();
+							->get()
+                            ->toArray();
 
-				return $wr[0]->from . ' - ' . $wr[0]->to;
+				if (empty($wr)) {
+				    return '';
+                }
+
+
+				return $wr[0]['from'] . ' - ' . $wr[0]['to'];
 		}
 }
 
@@ -128,9 +134,14 @@ if (!function_exists('func_user_wage')) {
 		function func_user_wage($user_id)
 		{
 				$w = WorkingHour::where('user_id', $user_id)
-						 ->get();
+						 ->get()
+                         ->toArray();
 
-				return $w[0]->wage_per_hour;
+				if (empty($w)) {
+				    return '';
+                }
+
+				return $w[0]['wage_per_hour'];
 		}
 }
 
