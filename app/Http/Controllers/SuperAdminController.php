@@ -92,7 +92,7 @@ class SuperAdminController extends Controller
     }
 
     public function adminUsers()
-    {
+    { 
         $users = $this->db->adminUsers();
 
         return view('sup-admin.users', compact('users'));
@@ -128,5 +128,23 @@ class SuperAdminController extends Controller
         Alert::success('User Successfully Updated');
 
         return Redirect::route('admin.users');
+    }
+
+    public function toogle_user_status($id, Request $request)
+    {
+        if ($request->ajax()) {
+    
+            if (! is_numeric($id) || empty($id)) {
+                return response()->json(['status' =>'error'],401); 
+            }
+            
+            if ($this->db->user_exist($id) == false) {
+                return response()->json(['status' =>'error'],401);     
+            }
+
+            $this->db->toogle_user_status($id);
+            
+            return response()->json(['status' =>'success'],200);
+        }
     }
 }

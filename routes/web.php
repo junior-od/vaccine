@@ -33,3 +33,5 @@ Route::get('/admin/registered', 'AdminController@registered')->name('registered.
 Route::post('/admin/register/save', 'AdminController@saveRegisterForm')->name('register.child.save');
 Route::post('/admin/update/{id}', 'AdminController@editRegisterForm')->name('register.child.edit');
 Route::post('/super/api/call/{type}', 'SuperAdminController@apiCall')->name('api.call');
+Route::post('/user/toogle/status/{id}', 'SuperAdminController@toogle_user_status');
+

@@ -184,4 +184,29 @@ class DbService {
         ]);
     }
 
+    public function user_exist($id) 
+    { 
+        $user = User::where('id', $id)
+        ->get()
+        ->toArray();
+
+        if (empty($user)) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public function toogle_user_status($id)
+    {
+        $user = User::findOrFail($id);
+        
+        $user->active = ! $user->active;
+
+        $user->save();
+
+        return true;
+    }
+
 }
